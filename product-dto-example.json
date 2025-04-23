@@ -1,0 +1,9 @@
+{
+  "id": 1,
+  "title": "Fresh Atlantic Salmon",
+  "description": "Premium quality Atlantic salmon, sustainably farmed and harvested daily. Rich in omega-3 fatty acids and perfect for grilling or baking.",
+  "price": 12.99,
+  "imageUrl": "https://ecofish.com/images/products/atlantic-salmon.jpg",
+  "category": "Fish",
+  "stockQuantity": 50
+}
