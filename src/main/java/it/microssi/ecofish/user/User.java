@@ -10,6 +10,7 @@ import java.util.Set;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
+@Table(name = "app_user")
 @Data
 public class User extends BaseEntity {
 
