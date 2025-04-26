@@ -7,3 +7,13 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+jwt:
+  secret-key: "8Zz5tw0Ionm3XPZZfN0NOml3z9FMfmpgXwovR9fp6ryDIoGRM8EPHAB6iHsc0fb"
+
+logging:
+  level:
+    org:
+      springframework.security: DEBUG
+    it:
+      microssi.ecofish.security: DEBUG
