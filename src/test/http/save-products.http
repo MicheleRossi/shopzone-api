@@ -1,0 +1,80 @@
+### Login per ottenere il token
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "adminpass"
+}
+
+> {% client.global.set("auth_token", response.body) %}
+
+### Crea Prodotto 1
+POST http://localhost:8080/api/products
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "title": "Canna da Pesca Shimano Nexave",
+  "description": "Canna da pesca telescopica in carbonio, lunghezza 3.60m, azione media",
+  "price": 89.99,
+  "imageUrl": "https://example.com/canna-shimano.jpg",
+  "category": "Canne da Pesca",
+  "stockQuantity": 25
+}
+
+### Crea Prodotto 2
+POST http://localhost:8080/api/products
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "title": "Mulinello Daiwa Ninja",
+  "description": "Mulinello da spinning con 4 cuscinetti, frizione anteriore micrometrica",
+  "price": 49.99,
+  "imageUrl": "https://example.com/mulinello-daiwa.jpg",
+  "category": "Mulinelli",
+  "stockQuantity": 30
+}
+
+### Crea Prodotto 3
+POST http://localhost:8080/api/products
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "title": "Set Artificiali Bass Fishing",
+  "description": "Kit 10 esche artificiali per la pesca al bass: creature bait, stick bait e jig",
+  "price": 29.99,
+  "imageUrl": "https://example.com/artificiali.jpg",
+  "category": "Esche Artificiali",
+  "stockQuantity": 50
+}
+
+### Crea Prodotto 4
+POST http://localhost:8080/api/products
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "title": "Guadino Professionale",
+  "description": "Guadino telescopico in alluminio con rete in nylon, lunghezza 2.40m",
+  "price": 34.99,
+  "imageUrl": "https://example.com/guadino.jpg",
+  "category": "Accessori",
+  "stockQuantity": 20
+}
+
+### Crea Prodotto 5
+POST http://localhost:8080/api/products
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "title": "Filo Trecciato Power Pro",
+  "description": "Filo da pesca trecciato 135m, resistenza 0.19mm/15kg, colore giallo",
+  "price": 19.99,
+  "imageUrl": "https://example.com/filo.jpg",
+  "category": "Fili e Lenze",
+  "stockQuantity": 60
+}
