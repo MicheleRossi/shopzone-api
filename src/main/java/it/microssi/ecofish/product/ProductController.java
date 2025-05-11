@@ -1,6 +1,7 @@
 package it.microssi.ecofish.product;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -33,8 +34,9 @@ public class ProductController {
 
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public ProductDTO createProduct(@RequestBody ProductDTO productDTO) {
-        return productService.save(productDTO);
+    public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO productDTO) {
+        ProductDTO savedProduct = productService.save(productDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedProduct);
     }
 
     @PutMapping("/{id}")
