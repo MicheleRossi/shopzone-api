@@ -1,5 +1,8 @@
 package it.microssi.ecofish.productimage;
 
+import java.io.File;
+import java.nio.file.Paths;
+
 import it.microssi.ecofish.product.Product;
 import it.microssi.ecofish.product.ProductRepository;
 import org.springframework.http.HttpStatus;
@@ -12,7 +15,7 @@ import it.microssi.ecofish.storage.FileStorageService;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/api/products/{productId}/images")
+@RequestMapping("/api")
 public class ProductImageController {
 
     private final ProductRepository productRepo;
@@ -25,7 +28,7 @@ public class ProductImageController {
         this.storageService = storageService;
     }
 
-    @PostMapping
+    @PostMapping("/products/{productId}/images")
     public ResponseEntity<ProductImage> uploadImage(
             @PathVariable Long productId,
             @RequestParam("file") MultipartFile file) throws IOException {
@@ -41,5 +44,20 @@ public class ProductImageController {
         imageRepo.save(image);
 
         return ResponseEntity.ok(image);
+    }
+
+    @DeleteMapping("/product-images/{imageId}")
+    public ResponseEntity<Void> deleteImage(@PathVariable Long imageId) {
+        ProductImage image = imageRepo.findById(imageId)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        // Elimina il file dal file system
+        File file = new File("uploads/products/" + Paths.get(image.getUrl()).getFileName());
+        if (file.exists()) {
+            file.delete();
+        }
+
+        imageRepo.delete(image);
+        return ResponseEntity.noContent().build();
     }
 }

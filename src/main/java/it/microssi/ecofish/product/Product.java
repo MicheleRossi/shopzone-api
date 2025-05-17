@@ -23,6 +23,6 @@ public class Product extends BaseEntity {
     private String imageUrl;
     private String category;
     private Integer stockQuantity;
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<ProductImage> images = new ArrayList<>();
 }
