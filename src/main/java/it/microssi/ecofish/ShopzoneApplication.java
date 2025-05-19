@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EcofishApplication {
+public class ShopzoneApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(EcofishApplication.class, args);
+        SpringApplication.run(ShopzoneApplication.class, args);
     }
 
 }

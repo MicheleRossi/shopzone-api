@@ -5,5 +5,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 public interface FileStorageService {
-    String saveImage(MultipartFile file) throws IOException;
+    String uploadFile(MultipartFile file) throws IOException;
+    byte[] downloadFile(String fileName) throws IOException;
 }
