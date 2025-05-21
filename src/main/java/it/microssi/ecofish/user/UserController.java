@@ -27,7 +27,7 @@ public class UserController {
     @ApiResponse(responseCode = "200", description = "List of users successfully retrieved")
     @GetMapping
     public List<UserDTO> getAllUsers() {
-        return userService.findAll();
+        return userService.get();
     }
 
     @Operation(summary = "Get user by ID", description = "Retrieves a specific user by their ID")
@@ -35,7 +35,7 @@ public class UserController {
     @ApiResponse(responseCode = "404", description = "User not found")
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> getUserById(@Parameter(description = "ID of the user to retrieve") @PathVariable Long id) {
-        return Optional.ofNullable(userService.findById(id))
+        return Optional.ofNullable(userService.get(id))
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
@@ -64,7 +64,7 @@ public class UserController {
     @ApiResponse(responseCode = "200", description = "User successfully deleted")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@Parameter(description = "ID of the user to delete") @PathVariable Long id) {
-        userService.deleteById(id);
+        userService.delete(id);
         return ResponseEntity.ok().build();
     }
 }

@@ -33,7 +33,7 @@ public class ProductController {
     @ApiResponse(responseCode = "200", description = "List of products successfully retrieved")
     @GetMapping
     public List<ProductDTO> getAllProducts() {
-        return productService.findAll();
+        return productService.get();
     }
 
     @Operation(
@@ -45,7 +45,7 @@ public class ProductController {
     @GetMapping("/{id}")
     public ResponseEntity<ProductDTO> getProductById(
             @Parameter(description = "ID of the product to retrieve") @PathVariable Long id) {
-        return Optional.ofNullable(productService.findById(id))
+        return Optional.ofNullable(productService.get(id))
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
@@ -93,7 +93,7 @@ public class ProductController {
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteProduct(@Parameter(description = "ID of the product to delete") @PathVariable Long id) {
-        productService.deleteById(id);
+        productService.delete(id);
         return ResponseEntity.ok().build();
     }
 }

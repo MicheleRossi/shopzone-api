@@ -1,7 +1,8 @@
 package it.microssi.ecofish.product;
 
 import it.microssi.ecofish.base.BaseMapper;
-import it.microssi.ecofish.productimage.ProductImageDTO;
+import it.microssi.ecofish.productimage.ImageDTO;
+import it.microssi.ecofish.productimage.ImageMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -9,6 +10,13 @@ import java.util.stream.Collectors;
 
 @Component
 public class ProductMapper extends BaseMapper<ProductDTO, Product> {
+
+    private final ImageMapper imageMapper;
+
+    public ProductMapper(ImageMapper imageMapper) {
+        super();
+        this.imageMapper = imageMapper;
+    }
 
     @Override
     public ProductDTO mapToDto(Product source) {
@@ -23,14 +31,7 @@ public class ProductMapper extends BaseMapper<ProductDTO, Product> {
         dto.setPrice(source.getPrice());
         dto.setCategory(source.getCategory());
         dto.setStockQuantity(source.getStockQuantity());
-        List<ProductImageDTO> imageDTOs = source.getImages().stream()
-                .map(img -> {
-                    ProductImageDTO productImageDTO = new ProductImageDTO();
-                    productImageDTO.setId(img.getId());
-                    productImageDTO.setUrl(img.getUrl());
-                    return productImageDTO;
-                })
-                .collect(Collectors.toList());
+        List<ImageDTO> imageDTOs = imageMapper.mapToDtoList(source.getImages());
 
         dto.setImages(imageDTOs);
         

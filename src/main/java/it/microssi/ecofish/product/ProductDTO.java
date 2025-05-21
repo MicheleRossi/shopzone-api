@@ -1,6 +1,6 @@
 package it.microssi.ecofish.product;
 
-import it.microssi.ecofish.productimage.ProductImageDTO;
+import it.microssi.ecofish.productimage.ImageDTO;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -32,6 +32,6 @@ public class ProductDTO {
     @Positive(message = "{product.stockQuantity.positive}")
     private Integer stockQuantity;
 
-    private List<ProductImageDTO> images;
+    private List<ImageDTO> images;
 
 }

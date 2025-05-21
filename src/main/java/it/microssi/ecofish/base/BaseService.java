@@ -2,7 +2,9 @@ package it.microssi.ecofish.base;
 
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -12,11 +14,12 @@ public abstract class BaseService <D, E extends BaseEntity, K> {
     @Autowired protected BaseMapper<D, E> mapper;
     @Autowired private EntityManager em;
 
-    public D findById(K id) {
-        return mapper.mapToDto(repository.findById(id).orElse(null));
+    public D get(K id) {
+        return mapper.mapToDto(repository.findById(id).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND)));
     }
 
-    public List<D> findAll(){
+    public List<D> get(){
         return mapper.mapToDtoList(repository.findAll());
     }
 
@@ -31,7 +34,7 @@ public abstract class BaseService <D, E extends BaseEntity, K> {
         return mapper.mapToDto(saved);
     }
 
-    public void deleteById(K id){
+    public void delete(K id){
         repository.deleteById(id);
     }
 

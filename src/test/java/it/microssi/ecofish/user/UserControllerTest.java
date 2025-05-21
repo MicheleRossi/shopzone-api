@@ -2,7 +2,6 @@ package it.microssi.ecofish.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import it.microssi.ecofish.auth.JwtService;
-import it.microssi.ecofish.auth.LoginRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

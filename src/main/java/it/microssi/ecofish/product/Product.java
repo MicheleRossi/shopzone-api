@@ -1,18 +1,21 @@
 package it.microssi.ecofish.product;
 
 import it.microssi.ecofish.base.BaseEntity;
-import it.microssi.ecofish.productimage.ProductImage;
+import it.microssi.ecofish.productimage.Image;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = "images")
 @Entity
-@Data
+@Getter
+@Setter
 public class Product extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,5 +27,5 @@ public class Product extends BaseEntity {
     private String category;
     private Integer stockQuantity;
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<ProductImage> images = new ArrayList<>();
+    private List<Image> images = new ArrayList<>();
 }

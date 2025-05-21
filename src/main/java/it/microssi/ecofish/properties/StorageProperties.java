@@ -14,6 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 public class StorageProperties {
+    private String baseUrl;
     private String uploadDir;
     private List<String> allowedFileTypes;
     

@@ -2,16 +2,21 @@ package it.microssi.ecofish.product;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import it.microssi.ecofish.auth.JwtService;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -27,6 +32,9 @@ public class ProductControllerTest {
 
     @Autowired
     private UserDetailsService userDetailsService;
+
+    @Autowired
+    private Validator validator;
 
     @Autowired
     private JwtService jwtService;
@@ -129,4 +137,16 @@ public class ProductControllerTest {
 //
 //        System.out.println("[DEBUG_LOG] POST /api/products with exact user payload returned 200 OK");
 //    }
+
+
+    @Test
+    public void testProductDTOValidation() {
+        ProductDTO product = new ProductDTO();
+        product.setTitle("");
+        product.setPrice(0.0f);
+
+        Set<ConstraintViolation<ProductDTO>> violations = validator.validate(product);
+        assertFalse(violations.isEmpty());
+        assertTrue(violations.stream().anyMatch(v -> v.getPropertyPath().toString().equals("title")));
+    }
 }

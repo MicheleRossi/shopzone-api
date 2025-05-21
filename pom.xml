@@ -9,7 +9,7 @@
         <relativePath/>
     </parent>
     <groupId>it.microssi</groupId>
-    <artifactId>ecommerce-api</artifactId>
+    <artifactId>shopzone-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>shopzone</name>
     <description>shopzone</description>

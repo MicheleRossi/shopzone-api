@@ -14,6 +14,7 @@ spring:
       max-request-size: 10MB
 
 storage:
+  base-url: "http://${server.address:localhost}:${server.port:8080}/"
   upload-dir: uploads/
   allowed-file-types: image/jpeg,image/png,image/gif
 
@@ -26,6 +27,10 @@ springdoc:
     operationsSorter: method
   api-docs:
     path: /v3/api-docs
+  info:
+    title: Shopzone API
+    description: API for Shopzone e-commerce platform
+    version: 1.0.0
 
 
 jwt:

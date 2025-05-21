@@ -4,8 +4,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class CloudinaryFileStorageService implements FileStorageService {
@@ -30,5 +28,18 @@ public class CloudinaryFileStorageService implements FileStorageService {
     public byte[] downloadFile(String fileName) throws IOException {
         // Non necessario per Cloudinary, dato che restituisce URL pubblici
         throw new UnsupportedOperationException("Download not supported for Cloudinary");
+    }
+
+    @Override
+    public void deleteFile(String fileName) throws IOException {
+//        try {
+//            Map result = cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap());
+//
+//            if (!"ok".equals(result.get("result"))) {
+//                throw new IOException("Impossibile eliminare il file da Cloudinary: " + publicId);
+//            }
+//        } catch (Exception e) {
+//            throw new IOException("Errore durante l'eliminazione del file: " + e.getMessage());
+//        }
     }
 }

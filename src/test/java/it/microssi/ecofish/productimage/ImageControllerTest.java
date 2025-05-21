@@ -18,11 +18,10 @@ import java.util.Optional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.mockito.Mockito.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class ProductImageControllerTest {
+public class ImageControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -65,7 +64,7 @@ public class ProductImageControllerTest {
         }
 
         // Find an existing image or use ID 1 for testing
-        Optional<ProductImage> existingImage = imageRepository.findAll().stream().findFirst();
+        Optional<Image> existingImage = imageRepository.findAll().stream().findFirst();
         if (existingImage.isPresent()) {
             testImageId = existingImage.get().getId();
             System.out.println("[DEBUG_LOG] Using existing image with ID: " + testImageId);
